@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard | Office Management System</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: #333;
+      }
+
+      /* Main Container */
+      .main-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        animation: fadeInUp 0.8s ease-out;
+        padding: 40px;
+      }
+
+      .hero-title {
+        font-weight: 700;
+        color: #4a4a4a;
+        margin-bottom: 10px;
+      }
+
+      .hero-subtitle {
+        color: #6c757d;
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+      }
+
+      /* Dashboard Action Cards */
+      .action-card {
+        background: #fff;
+        border: 2px solid #f0f0f0;
+        border-radius: 15px;
+        padding: 30px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #4a4a4a;
+        display: block;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .action-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border-color: transparent;
+      }
+
+      /* Specific Hover Colors */
+      .card-view:hover {
+        border-bottom: 5px solid #0d6efd;
+      }
+      .card-add:hover {
+        border-bottom: 5px solid #198754;
+      }
+      .card-remove:hover {
+        border-bottom: 5px solid #dc3545;
+      }
+      .card-filter:hover {
+        border-bottom: 5px solid #fd7e14;
+      }
+
+      .icon-wrapper {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        display: inline-block;
+      }
+
+      .action-title {
+        font-weight: 600;
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .action-desc {
+        font-size: 0.85rem;
+        color: #888;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: auto;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="main-card text-center">
+            <h1 class="hero-title">Office Management System</h1>
+            <p class="hero-subtitle">
+              Welcome Admin! What would you like to do today?
+            </p>
+
+            <div class="row g-4">
+              <div class="col-md-6 col-lg-3">
+                <a href="{% url 'all_emp' %}" class="action-card card-view">
+                  <div class="icon-wrapper text-primary">
+                    <i class="bi bi-people-fill"></i>
+                  </div>
+                  <span class="action-title">View All</span>
+                  <span class="action-desc">Check employee list</span>
+                </a>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <a href="{% url 'add_emp' %}" class="action-card card-add">
+                  <div class="icon-wrapper text-success">
+                    <i class="bi bi-person-plus-fill"></i>
+                  </div>
+                  <span class="action-title">Add New</span>
+                  <span class="action-desc">Onboard a new hire</span>
+                </a>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <a
+                  href="{% url 'remove_emp' %}"
+                  class="action-card card-remove"
+                >
+                  <div class="icon-wrapper text-danger">
+                    <i class="bi bi-person-x-fill"></i>
+                  </div>
+                  <span class="action-title">Remove</span>
+                  <span class="action-desc">Delete records</span>
+                </a>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <a
+                  href="{% url 'filter_emp' %}"
+                  class="action-card card-filter"
+                >
+                  <div class="icon-wrapper text-warning">
+                    <i class="bi bi-funnel-fill"></i>
+                  </div>
+                  <span class="action-title">Filter</span>
+                  <span class="action-desc">Search details</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © 2025 Office Management System | Designed with
+      <i class="bi bi-heart-fill text-danger"></i>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

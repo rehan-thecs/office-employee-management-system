@@ -1,0 +1,12 @@
+# Django specific
+*.pyc
+__pycache__/
+db.sqlite3
+/media
+/staticfiles
+
+# OS specific
+.DS_Store
+
+# VS Code specific
+.vscode/

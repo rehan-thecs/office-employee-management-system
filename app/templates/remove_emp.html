@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Employee | Office Management</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: #333;
+      }
+
+      /* Main Container Styling */
+      .main-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        margin-top: 80px;
+        margin-bottom: 50px;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .card-header-custom {
+        background-color: #fff;
+        padding: 2rem;
+        border-bottom: 2px solid #f0f0f0;
+        text-align: center;
+      }
+
+      .title-text {
+        color: #4a4a4a;
+        font-weight: 600;
+      }
+
+      /* Dropdown Styling */
+      .form-select {
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid #eee;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+      }
+
+      .form-select:focus {
+        border-color: #ff6b6b;
+        box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.25);
+      }
+
+      /* Danger Button Styling */
+      .btn-danger-custom {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 100%;
+      }
+
+      .btn-danger-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+        color: white;
+      }
+
+      .btn-back {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-weight: 500;
+      }
+
+      .btn-back:hover {
+        color: #ff4b2b;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: auto;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="main-card">
+            <div class="card-header-custom">
+              <h2 class="title-text text-danger">
+                <i class="bi bi-person-dash-fill me-2"></i>Remove Employee
+              </h2>
+              <p class="text-muted mb-0">
+                Select an employee from the list below to remove them from the
+                database.
+              </p>
+            </div>
+
+            <div class="card-body p-4 p-md-5">
+              <form action="{% url 'remove_emp' %}" method="post">
+                {% csrf_token %}
+
+                <div class="mb-4">
+                  <label class="form-label fw-bold text-muted"
+                    >Select Employee to Delete</label
+                  >
+                  <div class="input-group">
+                    <span class="input-group-text bg-light border-0">
+                      <i class="bi bi-search text-muted"></i>
+                    </span>
+
+                    <select
+                      class="form-select border-start-0"
+                      name="emp_id"
+                      required
+                    >
+                      <option value="" selected disabled>
+                        Choose an employee...
+                      </option>
+
+                      {% if emps %} {% for emp in emps %}
+                      <option value="{{emp.id}}">
+                        {{emp.first_name}} {{emp.last_name}} (ID: {{emp.id}})
+                      </option>
+                      {% endfor %} {% else %}
+                      <option disabled>No employees found in database</option>
+                      {% endif %}
+                    </select>
+                  </div>
+                  <div class="form-text text-danger mt-2">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                    Warning: This action cannot be undone.
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-danger-custom">
+                  Remove Selected Employee
+                </button>
+
+                <div class="text-center mt-4">
+                  <a href="/" class="btn-back">
+                    <i class="bi bi-arrow-left me-1"></i> Cancel & Return Home
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © 2025 Office Management System | Designed with
+      <i class="bi bi-heart-fill text-danger"></i>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
